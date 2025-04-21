@@ -1,0 +1,47 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  # Laravel Backend Service
+  backend:
+    build:
+      context: ./weather-app-backend
+      dockerfile: Dockerfile
+    container_name: weather-backend
+    restart: unless-stopped
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=${APP_KEY}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+    volumes:
+      - ./weather-app-backend:/var/www/html
+    ports:
+      - "8000:80"
+    networks:
+      - weather-network
+
+  # NextJS Frontend Service
+  frontend:
+    build:
+      context: ./weather-app-frontend
+      dockerfile: Dockerfile
+    container_name: weather-frontend
+    restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://backend
+      - NEXT_PUBLIC_OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+    volumes:
+      - ./weather-app-frontend:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - weather-network
+
+networks:
+  weather-network:
+    driver: bridge
