@@ -2,7 +2,7 @@
 
 This repository contains a full-stack weather application with a Laravel backend and a Next.js frontend.
 
-![Screenshot of Weather App](public/screenshot.png)
+![Screenshot of Weather App](./weather-app-frontend/public/screenshot.png)
 
 ## System Requirements
 
