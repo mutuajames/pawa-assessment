@@ -62,24 +62,25 @@ export function SearchBar({ onCitySelect }: SearchBarProps) {
 
   return (
     <div className="relative w-full" ref={searchRef}>
-      <div className="w-full">
+      <div className="w-full flex items-center gap-2">
         <input
-          className="input input-solid flex-1 border-2"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Search city..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
         />
         <button
-          className="btn btn-outline-primary border border-primary "
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 border border-blue-700 rounded-lg cursor-pointer"
           onClick={handleSearch}
         >
           GO
         </button>
       </div>
 
+
       {isResultsVisible && results.length > 0 && (
-        <div className="card w-full mt-1 z-10 shadow-lg bg-base-100 absolute border border-base-300">
+        <div className="card w-full mt-1 z-10 shadow-lg bg-white absolute border border-base-300">
           <div className="card-body p-2">
             {results.map((location, index) => (
               <div

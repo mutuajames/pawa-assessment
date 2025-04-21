@@ -35,23 +35,24 @@ export default function Home() {
           } catch (error) {
             console.error('Error getting location weather:', error);
             // Default to a popular city
-            setCity('Nairobi, KE');
-            console.log(city)
             loadWeatherData('Nairobi, KE');
+            setCity('Nairobi, KE');
           }
         },
         () => {
           // Default city if user denies location
-          setCity('Nairobi, KE');
           loadWeatherData('Nairobi, KE');
+          setCity('Nairobi, KE');
         }
       );
     } else {
       // Default city if geolocation not available
-      setCity('Nairobi, KE');
       loadWeatherData('Nairobi, KE');
+      setCity('Nairobi, KE');
     }
   }, []);
+
+  console.log(city)
 
   const loadWeatherData = async (cityName: string) => {
     setError('');
@@ -108,7 +109,7 @@ export default function Home() {
           
           {/* Right Column - Search, Forecast, Details */}
           <div className="col-span-2 p-6">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-6 rounded-lg">
               <div className="w-3/4">
                 <SearchBar onCitySelect={handleCitySelect} />
               </div>
@@ -132,7 +133,7 @@ export default function Home() {
               </div>
             ) : (
               <>
-                <div className="mb-6">
+                <div className="mb-6  rounded-lg">
                   <DailyForecast 
                     forecastData={forecastData}
                     temperatureUnit={temperatureUnit}

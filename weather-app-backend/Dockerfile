@@ -1,4 +1,3 @@
-# weather-app-backend/Dockerfile
 FROM php:8.2-apache
 
 # Install dependencies
