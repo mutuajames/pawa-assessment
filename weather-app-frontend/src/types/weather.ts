@@ -16,6 +16,7 @@ export interface WeatherData {
         speed: number;
         deg: number;
     };
+    visibility: number,
     sys: {
         country: string;
         sunrise: number;

@@ -5,25 +5,38 @@ interface TemperatureToggleProps {
 
 export function TemperatureToggle({ unit, onUnitChange }: TemperatureToggleProps) {
   return (
-    <div className="inline-flex rounded-lg shadow-xs cursor-pointer" role="group">
+    <div className="flex p-1 bg-gray-100 rounded-full shadow-sm">
       <button
         type="button"
         onClick={() => onUnitChange('celsius')}
-        className={`px-4 py-2 text-sm font-medium border rounded-l-lg
+        className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
           ${unit === 'celsius' 
-            ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600' 
-            : 'bg-white text-black border-gray-300 hover:bg-gray-100'}`}    >
-        °C
+            ? 'text-white' 
+            : 'text-gray-500 hover:text-gray-800'}`}  
+        aria-pressed="true"
+        aria-label="Celsius temperature unit"  
+      >
+        {unit === 'celsius' && (
+          <span className="absolute inset-0 rounded-full bg-blue-600 shadow-md transition-all duration-300"></span>
+        )}
+        <span className="relative">°C</span>
       </button>
+      
       <button
-      type="button"
+        type="button"
         onClick={() => onUnitChange('fahrenheit')}
-        className={`px-4 py-2 text-sm font-medium border rounded-r-lg
+        className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300
           ${unit === 'fahrenheit' 
-            ? 'bg-blue-500 text-white border-blue-500 hover:bg-blue-600' 
-            : 'bg-white text-black border-gray-300 hover:bg-gray-100'}`}   >
-        °F
+            ? 'text-white' 
+            : 'text-gray-500 hover:text-gray-800'}`}  
+        aria-pressed="false"
+        aria-label="Fahrenheit temperature unit"
+      >
+        {unit === 'fahrenheit' && (
+          <span className="absolute inset-0 rounded-full bg-blue-600 shadow-md transition-all duration-300"></span>
+        )}
+        <span className="relative">°F</span>
       </button>
     </div>
   );
-} 
+}
